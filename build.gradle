@@ -17,6 +17,9 @@ dependencies {
     implementation 'org.apache.tomcat:tomcat-servlet-api:10.1.11'
 
 //    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+    implementation 'org.thymeleaf:thymeleaf:3.1.1.RELEASE'
+
 }
 
 test {

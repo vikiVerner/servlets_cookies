@@ -17,20 +17,23 @@ public class TimezoneValidateFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest request,
                             HttpServletResponse response,
                             FilterChain chain) throws IOException, ServletException {
+
         if(request.getParameter("timezone")!=null){
             String timezone = request.getParameter("timezone");
-            if(isValidTimezone(timezone.replace(" ","+"))){
-                chain.doFilter(request, response);
-            }else{
-                response.setStatus(400);
-                response.setContentType("text/html; charset=utf-8");
-                response.getWriter().write("Invalid timezone");
-                response.getWriter().close();
+                if(isValidTimezone(timezone.replace(" ","+"))){
+                    chain.doFilter(request, response);
+                }else{
+                    response.setStatus(400);
+                    response.setContentType("text/html; charset=utf-8");
+                    response.getWriter().write("Invalid timezone");
+                    response.getWriter().close();
+
             }
         }else{
-            chain.doFilter(request, response);
+                chain.doFilter(request, response);
+            }
+
         }
-    }
 
     private static boolean isValidTimezone(String timezone) {
         if (timezone.matches("^UTC[+-](1[0-4]|[0-9])$")) {
